@@ -468,7 +468,7 @@ angular.module('mynote').controller("noteDetailController", function($scope,stat
 					// $("iframe[name='preview']").contents().find("head").append(act);
 					var ifrm = $("iframe[name='preview']").get(0).contentWindow;
 					// // 外部サイトにメッセージを投げる
-					ifrm.postMessage(item.excerpt, 'http://localhost:3000/blank.html');
+					ifrm.postMessage(item.excerpt, '*');
 				}, 1000);
 			});
 		}
