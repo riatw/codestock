@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="ja" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Code Stock</title>
+	<meta name="viewport" content="width=1024">
+
+	<link rel="stylesheet" href="common/css/base.css">
+
+	<script type="text/javascript" src="common/lib/sassjs/sass.js"></script>
+	<script type="text/javascript" src="common/js/main.min.js"></script>
+</head>
+
+<body class="index" ng-app="mynote">
+	<!-- [ WRAP ] -->
+	<div id="wrap" ng-controller="loginController" ng-init="init()">
+		<div id="l-header">
+			<h1 class="header-logo">
+				<a href="#">Code Stock</a>
+			</h1>
+
+			<div class="header-search">
+				<form ng-controller="searchNoteController" ng-show="currentUser">
+					<div class="form-group">
+						<input type="text" placeholder="フィルタ" class="form-control" ng-model="q" ng-keyup="search()">
+					</div>
+				</form>
+			</div>
+
+			<div class="header-login">
+				<ul ng-show="currentUser">
+					<li ng-controller="addNoteModalController"><a ng-click="open()">コードを書く</a></li>
+					<li><a ng-click="logOut()">ログアウト</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="l-content">
+			<div id="l-guide" ng-hide="currentUser">
+				<div class="guide-inner">
+					<div class="guide-left">
+						<div class="wysiwyg">
+							<h1>About Code Stock</h1>
+
+							<p>
+								Code Stock は、「情報を育てる」という視点で作られた、自律的なチームのための<br>ドキュメント共有サービスです。
+							</p>
+
+							<blockquote>Everything is not perfect from the beginning.<br>
+							We want to support the concept of information.<br>
+							<strong>最初から完璧なものなんてない。 Code Stock は情報の一生を見守りたい。</strong>
+							</blockquote>
+
+							<h2 id="h2-1">Share - とりあえず不完全でも公開</h2>
+
+							<p>チームの誰かに情報を共有する時、完璧にまとめることをを目指しすぎて、後手に回ってしまうことはないでしょうか？<br>また、誰かから新しいことを教えてもらったとき、もっと早く言ってくれればよかったのに...と思ったことはないでしょうか？</p>
+
+							<blockquote>
+								あなたが今抱えている仕事や悩み、アイデアなどを是非教えてください
+							</blockquote>
+
+							<p>例え不完全でも早いタイミングで共有しておけば、他の仲間がもっとよいアイデアをくれるかもしれません。<br>「こんなこと書いていいの？」と思わなくても大丈夫、いますぐ始めましょう。</p>
+
+							<h2 id="h2-3">Archive - 情報が育ったらきちんと整理</h2>
+
+							<p>Code Stockではタグを何個でもつけることができます。<br>「テクニカル」、「デザイン」、などコードに関係するタグを沢山つけましょう。<br>後で見る人が目的の情報にたどり着くための手助けになります。</p>
+						</div>
+					</div>
+
+					<div class="guide-right">
+						<div class="guide-login">
+							<form>
+								<ul>
+									<li>
+										<input type="text" placeholder="ユーザーID" class="form-control" ng-model="username">
+									</li>
+									<li>
+										<input type="password" placeholder="パスワード" class="form-control" ng-model="password">
+									</li>
+									<li ng-show="login_error">
+										<p class="login-error">
+											ユーザID、またはパスワードが間違っています
+										</p>
+									</li>
+									<li>
+										<button type="submit" class="btn btn-success" ng-click="logIn()">Login</button>
+									</li>
+								</ul>
+							</form>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div id="l-viewcol" ng-show="currentUser">
+				<div class="viewcol-tag" ng-controller="tagListController as tlCtl">
+					<div class="content-tag">
+						<div class="tag-inner">
+							<div class="tag-info">
+								<p class="info-title">タグ</p>
+							</div>
+
+							<div class="tag-body">
+								<div class="mod-box-scroll">
+									<div class="mod-icon-spinner" ng-show="loadTagSp"></div>
+									<ul class="mod-list-line">
+										<li ng-class="{'active':tlCtl.currentTagId==='all'}"><a href="#/tag/all">すべてのコード</a></li>
+										<li ng-repeat="tag in tlCtl.taglist" ng-class="{'active':tlCtl.currentTagId===tag.id}"><a href="#/tag/{{tag.id}}">#{{tag.name}}</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="viewcol-list" ng-controller="noteListController">
+					<div class="mod-box-scroll">
+						<div class="mod-icon-spinner note-spinner" ng-show="spinnerView"></div>
+
+						<div class="mod-icon-empty note" ng-show="noteIsEmpty">
+							<p class="empty-txt">該当するコードがありません</p>
+						</div>
+
+						<ul class="mod-list-line mab0 note">
+							<li ng-repeat="item in feeds | filter: currentSearchKeyword" ng-class="{'is-show':!spinnerView, 'active':currentNoteId==item.id}">
+								<a ng-href="#/note/{{item.id}}">
+									<h4 class="list-group-item-heading" style="margin-top: 5px;"><span class="line-tag">{{item.status}}</span>{{item.title}}</h4>
+									<p class="list-group-item-text"><span class="text-author">{{item.author.displayName}}</span>が<span class="text-date">{{item.modifiedDate | date:'yyyy-MM-dd'}}</span>に更新しました</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="viewcol-detail" ng-controller="noteDetailController">
+					<div class="content-note">
+						<div class="mod-icon-spinner note-spinner ng-hide" ng-hide="isNoteDetailLoaded"></div>
+
+						<div class="note-inner" ng-show="isNoteDetailLoaded">
+							<div class="note-info">
+								<h1 class="info-title">{{detailTitle}}</h1>
+
+								<ul class="info-btngroup">
+									<li ng-controller="addNoteModalController" ng-click="open(item)"><button>編集</button></li>
+
+									<li class="shareurl" dropdown>
+										<button class="dropdown-toggle" dropdown-toggle>共有</button>
+
+										<ul class="dropdown-menu" du-scroll-container="scroll-container">
+											<li>
+												<a href="{{shareUrl}}" target="_blank">{{shareUrl}}</a>
+											</li>
+										</ul>
+									</li>
+
+									<li class="like" ng-controller="addNoteStarController" ng-click="setStar()"><button ng-class="{'active':liked}">♥ [{{likedResults}}]</button></li>
+								</ul>
+							</div>
+							<div class="note-body">
+								<div class="mod-box-scroll scroll-no-border">
+									<div class="mod-box-wysiwyg" ng-include="'common/views/code_preview.html'" ng-show="isNoteDetailLoaded">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- [ WRAP ] -->
+</body>
+</html>

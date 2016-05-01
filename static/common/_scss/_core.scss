@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+//変数宣言のみ、テキスト色、背景色などの設定
+@import "core/setting";
+
+//Compass
+@import "compass";
+
+//mixin & function
+@import "core/mixin";

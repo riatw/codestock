@@ -1,0 +1,336 @@
+@charset "UTF-8";
+
+//
+// Modals
+// --------------------------------------------------
+
+//== Modals
+//
+// .modal-open      - body class for killing the scroll
+// .modal           - container to scroll within
+// .modal-dialog    - positioning shell for the actual modal
+// .modal-content   - actual modal w/ bg and corners and shit
+
+.modal-open {
+	overflow: hidden;
+}
+
+.modal {
+	display: none;
+	overflow: auto;
+	overflow-y: scroll;
+	//position: fixed;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 1050;
+	//@include transform(translate3d(0,0,0));
+	-webkit-overflow-scrolling: touch;
+	outline: 0;
+
+	&.fade .modal-dialog {
+		transform: scale(0.95);
+		opacity: 0;
+		transform: translateY(100%);
+		transform: translate3d(0,100%,0);
+		transition: all 0.3s ease;
+	}
+	&.in .modal-dialog {
+		top: 0;
+		transform: scale(1);
+		opacity: 1;
+		transform: translateY(0);
+		transform: translate3d(0,0,0);
+		transition: all 0.3s ease;
+	}
+}
+
+.modal-dialog {
+	position: relative;
+	width: auto;
+	height: 100%;
+}
+
+.modal-content {
+	position: relative;
+	height: 100%;
+	//background-color: #ffffff;
+	background-color: rgba(255,255,255,1);
+	background-clip: padding-box;
+	outline: none;
+
+	.content-inner {
+		height: 100%;
+		padding: 46px 0 0 0;
+		@include box-sizing(border-box);
+
+		&.is-footer {
+			padding: 66px 0 46px 0;
+		}
+	}
+}
+
+.modal-backdrop {
+	//position: fixed;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1040;
+	// background-color: #000000;
+
+	&.fade {
+		@include opacity(0);
+	}
+	&.in {
+		@include opacity(0);
+	}
+}
+
+.modal-header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	//background-color: $col-green1;
+	//color: #fff;
+	border-bottom: 1px solid #e5e5e5;
+	//line-height: 46px;
+	@include min-height(46px);
+	z-index: 1;
+
+	.modal-title {
+		line-height: 46px;
+		text-align: center;
+	}
+
+	.header-btn {
+		position: absolute;
+		right: 10px;
+		bottom: 7px;
+		display: inline-block;
+		width: auto;
+		text-align: right;
+	}
+
+	.btn-close {
+		position: absolute;
+		left: 0;
+		bottom: -3px;
+		width: 46px;
+		height: 46px;
+		cursor: pointer;
+		border: none;
+		background-color: transparent;
+		//color: #fff;
+		color: #666;
+		@include opacity(0.8);
+
+		&:active,
+		&.is-active {
+			@include opacity(1);
+		}
+
+		&:before {
+			top: 50%;
+			left: 50%;
+			@extend .icon;
+			content: "\e600";
+			margin: -10px 0 0 -10px;
+			font-size: fz(14,20);
+		}
+	}
+}
+
+.modal-body {
+	position: relative;
+	height: 100%;
+	overflow-y: auto;
+	@include box-sizing(border-box);
+
+	.body-info {
+		background-color: #eee;
+		color: #666;
+		border-bottom: 1px solid #e5e5e5;
+		padding: 0 20px;
+		line-height: 24px;
+		text-align: center;
+
+		span {
+			font-size: fz(14,12);
+		}
+	}
+
+	.body-main {
+		padding: 20px;
+
+		&.main-table {
+			padding: 0;
+		}
+
+		.main-dialog {
+			.dialog-content {
+				padding: 15px;
+				text-align: center;
+
+				.content-img {
+					margin-top: 60px;
+				}
+
+				.content-txt {
+					text-align: center;
+					margin-top: 30px;
+
+					> dt {
+						font-size: fz(14,16);
+						font-weight: 700;
+					}
+					> dd {
+						margin-top: 18px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.modal-footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 46px;
+	background-color: #fff;
+	padding: 0 10px;
+	text-align: right;
+	border-top: 1px solid #e5e5e5;
+
+	.footer-btn {
+		position: relative;
+		top: 7px;
+		display: inline-block;
+		width: auto;
+		text-align: right;
+	}
+
+	.footer-form {
+		position: relative;
+		top: 7px;
+
+		.form-input {
+			width: 100%;
+			padding-right: 74px;
+			@include box-sizing(border-box);
+
+			* {
+				line-height: 30px;
+			}
+		}
+		.form-btn {
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 68px;
+		}
+	}
+}
+
+.m-box-form {
+	display: flex;
+	margin-bottom: 20px;
+
+	.form-group {
+		width: 25%;
+		margin-right: 30px;
+		align-items: top;
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		label {
+			display: block;
+			width: 10em;
+			margin-bottom: 5px;
+			font-weight: bold;
+		}
+
+		input {
+			width: 100%;
+		}
+
+		select {
+			width: 100%;
+			line-height: 20px;
+		}
+
+		textarea {
+			width: 100%;
+		}
+	}
+}
+
+.mod-box-scroll {
+	position: relative;
+	height: 100%;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+.mod-box-wysiwyg {
+	height: 100%;
+	background: #f5f5f5;
+	color: #333;
+	padding: 10px;
+
+	iframe {
+		height: 100%;
+	}
+
+	.base-body {
+		background: #fff;
+		padding: 24px;
+		border: 1px solid #d5d5d5;
+	}
+}
+
+.m-box-editnote {
+
+		.ace_editor  {
+		  height : 100%;
+		}
+
+	.editnote-setting {
+	}
+	.editnote-code {
+		display: flex;
+		justify-content: space-between;
+
+		.mod-box-scroll {
+			position: relative;
+			float: left;
+			padding-top: 20px;
+			width: 25%;
+			height: 535px;
+			overflow-y: auto;
+			border: 1px solid #d5d5d5;
+
+			> label {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				padding-right: 10px;
+				display: block;
+				background: #333;
+				color: #fff;
+				font-size: fz(14,12);
+				text-align: right;
+				box-sizing: border-box;
+			}
+		}
+	}
+}

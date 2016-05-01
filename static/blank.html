@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>GROUP NOTE beta</title>
+
+	<style type="text/css" data-preview-css>
+	</style>
+</head>
+
+<body>
+
+<div data-preview-html>
+
+</div>
+
+<script src="common/lib/jquery.js"></script>
+<script type="text/javascript">
+	console.log($("title"));
+</script>
+
+<script type="text/javascript">
+// メッセージ受信イベント
+window.addEventListener('message', function(event) {
+	$("<script />").text(event.data).appendTo("body");
+}, false);
+</script>
+
+</body>
+</html>

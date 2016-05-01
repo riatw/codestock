@@ -1,0 +1,100 @@
+@charset "UTF-8";
+
+.mod-list-line {
+	padding: 0;
+	list-style: none;
+
+	&.note,
+	&.tag {
+		> li {
+			a {
+				@include transition-property(all);
+				@include transition-duration(0.2s);
+
+				&:hover {
+					@include transition-property(all);
+					@include transition-duration(0.2s);
+				}
+			}
+
+			&.active {
+				a {
+					@include transition-property(all);
+					@include transition-duration(0.2s);
+				}
+			}
+		}
+	}
+
+	> li {
+		background: #fff;
+		border-bottom: 1px solid #d5d5d5;
+
+		.line-tag {
+			display: block;
+			width: 4.5em;
+			margin-bottom: 3px;
+			padding: 2px;
+			background: #aaa;
+			color: #fff;
+			font-size: fz(14,10);
+			text-align: center;
+		}
+
+		&:first-child {
+			border-top: 0;
+		}
+
+		&.active {
+			position: relative;
+			background: #eee;
+		}
+
+		a {
+			display: block;
+			padding: 10px 15px;
+			color: #333;
+			cursor: pointer;
+			@include transition-property(background);
+			@include transition-duration(0.2s);
+
+			&:hover {
+				background: #eee;
+				text-decoration: none;
+				@include transition-property(background);
+				@include transition-duration(0.2s);
+			}
+
+			.list-group-item-heading {
+				font-size: fz(14,16);
+				line-height: 1.35;
+			}
+
+			.list-group-item-text {
+				font-size: fz(14,12);
+				color: #999;
+
+				.text-author {
+					margin-right: 0.5em;
+					font-weight: bold;
+				}
+				.text-date {
+					margin: 0 0.5em;
+				}
+			}
+
+			.list-group-item-edit {
+				font-size: fz(14,12);
+				color: #666;
+				margin: 0;
+				text-align: right;
+			}
+		}
+	}
+}
+
+.m-list-btngroup {
+	li {
+		display: inline-block;
+	}
+}

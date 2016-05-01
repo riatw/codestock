@@ -1,0 +1,48 @@
+<div class="content-inner">
+	<div class="modal-header">
+		<p class="modal-title">Code Stock</p>
+		<button type="button" class="btn-close" ng-click="cancel()"></button>
+	</div>
+
+	<div class="modal-body">
+		<div class="body-main">
+			<div class="m-box-editnote">
+				<div class="editnote-setting">
+					<form class="m-box-form">
+						<div class="form-group">
+							<label for="exampleInputEmail1">タイトル</label>
+							<input type="text" class="form-control" ng-model="form.title" placeholder="ノートのタイトルを入力">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">タグ</label>
+							<input type="text" class="form-control" ng-model="form.tags" placeholder="ノートのタグをカンマ区切りで入力">
+						</div>
+						<ul class="form-group m-list-btngroup">
+							<button class="m-button-common common-save" ng-click="ok()">保存</button>
+							<button class="m-button-common common-save" ng-click="preview()" hotkey="{'command+s': preview}">プレビュー</button>
+							<button class="m-button-common common-delete" ng-click="delete()">削除</button>
+						</ul>
+					</form>
+				</div>
+
+				<div class="editnote-code">
+					<div class="mod-box-scroll">
+						<label for="exampleInputPassword1">HTML</label>
+						<div ui-ace="form.ace_setting_html" ng-model="form.html"></div>
+					</div>
+					<div class="mod-box-scroll">
+						<label for="exampleInputPassword1">SCSS</label>
+						<div ui-ace="form.ace_setting_css" ng-model="form.css"></div>
+					</div>
+					<div class="mod-box-scroll">
+						<label for="exampleInputPassword1">JavaScript</label>
+						<div ui-ace="form.ace_setting_js" ng-model="form.js"></div>
+					</div>
+					<div class="mod-box-scroll" ng-include="'common/views/code_preview.html'">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

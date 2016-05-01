@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+//------------------------------//
+//	reset.scss用のパラメーター		//
+//------------------------------//
+$defaultBgColor: 	#fff;
+$defaultTxtColor: 	#333;
+
+$defaultLinkColor: 	#98117e;
+$defaultLinkVisitedColor: #98117e;
+$defaultLinkHoverColor: #98117e;
+
+$defaultTxtSize: 	14px;
+
+$siteMainColor: darken(lightgreen,10%);
+
+//---- Break Point ----
+$fixedWidth: 960px;
+
+$breakS: "screen and (min-width: 0px) and (max-width: 568px)";
+$breakM: "screen and (max-width: 960px)";
+$retina: "only screen and (-webkit-min-device-pixel-ratio: 2),(-webkit-min-device-pixel-ratio: 1.5)";
+
+$lineHeight: 1.75;
+
+// * HTML5
+$use-html5: false;

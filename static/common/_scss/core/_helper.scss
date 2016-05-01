@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+
+//clearfix
+.clearfix {
+    @include clearfix;
+}
+
+
+//float
+.fl		{ float: left !important; }
+.fr		{ float: right !important; }
+
+
+//width
+@for $i from 1 through 100 {
+    .w#{$i}p { width: 1% * $i !important; }
+}
+
+@for $i from 1 through 30 {
+    .w#{$i}e { width: 1em * $i !important; }
+}
+
+
+//margin
+@for $i from 0 through 10 {
+    .m#{$i*5} { margin: 5px * $i !important; }
+}
+@for $i from 0 through 10 {
+    .mat#{$i*5} { margin-top: 5px * $i !important; }
+}
+@for $i from 0 through 10 {
+    .mar#{$i*5} { margin-right: 5px * $i !important; }
+}
+@for $i from 0 through 10 {
+    .mab#{$i*5} { margin-bottom: 5px * $i !important; }
+}
+@for $i from 0 through 10 {
+    .mal#{$i*5} { margin-left: 5px * $i !important; }
+}
+
+@for $i from 0 through 10 {
+    .me#{$i} { margin: 1em * $i !important; }
+}
+@for $i from 0 through 10 {
+    .mate#{$i} { margin-top: 1em * $i !important; }
+}
+@for $i from 0 through 10 {
+    .mare#{$i} { margin-right: 1em * $i !important; }
+}
+@for $i from 0 through 10 {
+    .mabe#{$i} { margin-bottom: 1em * $i !important; }
+}
+@for $i from 0 through 20 {
+    .male#{$i} { margin-left: 1em * $i !important; }
+}
+
+@for $i from 1 through 10 {
+    .nmat#{$i*5} { margin-top: -5px * $i !important; }
+}
+@for $i from 1 through 10 {
+    .nmar#{$i*5} { margin-right: -5px * $i !important; }
+}
+@for $i from 1 through 10 {
+    .nmab#{$i*5} { margin-bottom: -5px * $i !important; }
+}
+@for $i from 1 through 10 {
+    .nmal#{$i*5} { margin-left: -5px * $i !important; }
+}
+
+
+//padding
+@for $i from 0 through 10 {
+    .p#{$i*5} { padding: 5px * $i !important; }
+}
+@for $i from 0 through 10 {
+    .pat#{$i*5} { padding-top: 5px * $i !important; }
+}
+@for $i from 0 through 10 {
+    .par#{$i*5} { padding-right: 5px * $i !important; }
+}
+@for $i from 0 through 10 {
+    .pab#{$i*5} { padding-bottom: 5px * $i !important; }
+}
+@for $i from 0 through 10 {
+    .pal#{$i*5} { padding-left: 5px * $i !important; }
+}
+
+//font size
+.fzs { font-size: fz(14,12); }
+.fzm { font-size: fz(14,16); }
+.fzl { font-size: fz(14,18); }
+
+//font weight
+.fw     { font-weight: bold !important; }
+.fwn    { font-weight: normal !important; }
+
+//font color
+.cRed   { color: #c00 !important; }
+
+//text-align
+.tal	{ text-align: left !important; }
+.tac	{ text-align: center !important; }
+.tar	{ text-align: right !important; }
+
+//line-height
+.lh135  { line-height: 135% !important; }
+.lh175	{ line-height: 175% !important; }
+.lh200	{ line-height: 200% !important; }
+
+//other
+.curd	{ cursor: default; }
+.curp	{ cursor: pointer; }

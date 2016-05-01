@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+// * font-family
+// - $type		フォントの種類 (sans-serif / serif)
+// - $main		優先したいフォント (例. Meiryo / Roboto)
+// - $important	!importantを付加
+
+@mixin font-family($type, $main: '', $important: false) {
+
+	@if $important == 'important' or $important == true {
+		$important: ' !important';
+	} @else {
+		$important: '';
+	}
+
+	@if $main {
+		$main: $main + ',';
+	}
+
+	@if $type == sans-serif {
+		font-family: $main "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "游ゴシック", YuGothic, Meiryo, "ＭＳ Ｐゴシック", Helvetica, Arial, sans-serif#{$important};
+
+	} @else if $type == serif {
+		font-family: $main Georgia, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "ＭＳ Ｐ明朝", serif#{$important};
+
+	} @else if $type == mono {
+		font-family: $main Menlo, Monaco, Consolas, "Courier New", monospace #{$important};
+
+	} @else if $type == meiryo {
+		font-family: $main "メイリオ", Meiryo, "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "游ゴシック", YuGothic, "ＭＳ Ｐゴシック", Helvetica, Arial, sans-serif#{$important};
+	}
+}
+
+// * font-size
+@function fz( $baseSize, $newSize ) {
+	@return floor(percentage( $newSize / $baseSize ));
+}
+
+@mixin inline-block-child() {
+	letter-spacing: -.40em;
+
+	> li {
+		display: inline-block;
+		letter-spacing: normal;
+	}
+}
+
+@mixin clearfix() {
+	letter-spacing: -.40em;
+
+	> li {
+		display: inline-block;
+		letter-spacing: normal;
+	}
+}@mixin opacity($a) {
+	letter-spacing: -.40em;
+
+	> li {
+		display: inline-block;
+		letter-spacing: normal;
+	}
+}
+@mixin inline-block() {
+	letter-spacing: -.40em;
+
+	> li {
+		display: inline-block;
+		letter-spacing: normal;
+	}
+}
+
+// * Transition
+// - $property	transitionの種類 (例. color)
+// - $duration	時間 (例. 0.3)
+@mixin transition($property,$duration) {
+	@include transition-property($property);
+	@include transition-duration($duration+'s');
+}

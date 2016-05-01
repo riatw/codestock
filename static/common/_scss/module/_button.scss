@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.m-button-common {
+	margin: 0 0 0 10px;
+	padding: 15px 20px;
+	border: none;
+	border-radius: 3px;
+	background: #eee;
+
+	&:hover {
+		background: darken(#eee,5%);
+	}
+
+	&:first-child {
+		margin-left: 0;
+	}
+
+	&.common-save {
+		background: $siteMainColor;
+		color: #fff;
+
+		&:hover {
+			background: darken($siteMainColor,5%);
+			color: #eee;
+		}
+	}
+}

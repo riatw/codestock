@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="ja" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>GROUP NOTE beta</title>
+	<meta name="viewport" content="width=1024">
+
+	<link rel="stylesheet" href="../common/css/base.css">
+	<script type="text/javascript" src="../common/js/main.min.js"></script>
+</head>
+
+<body class="index" ng-app="mynote">
+	<!-- [ WRAP ] -->
+	<div id="wrap">
+		<div id="l-header" class="header-compact">
+			<h1 class="header-logo">
+				<a href="#">Group Note</a>
+			</h1>
+		</div>
+
+		<div id="l-sharenote" ng-controller="shareNoteController">
+			<h1 class="sharenote-title">{{title}}</h1>
+
+			<div class="sharenote-body wysiwyg" marked="detailBody">
+			</div>
+		</div>
+	</div>
+	<!-- [ WRAP ] -->
+</body>
+</html>

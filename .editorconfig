@@ -1,0 +1,14 @@
+# この作業フォルダ以下のファイルを作る際のEditorの共通ルール
+# http://mkasumi.com/entry-1117.html
+
+root = true
+
+[*]
+charset = utf-8
+indent_style = tab
+indent_size = 4
+trim_trailing_whitespace = true
+insert_final_newline = true
+end_of_line = lf
+
+[*.css]

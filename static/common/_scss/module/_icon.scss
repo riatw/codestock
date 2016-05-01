@@ -1,0 +1,89 @@
+@charset "UTF-8";
+
+/*
+	module:　mod-icon-spinner
+	- ローディング用スピナー
+-----------------------------------------------------------------*/
+.mod-icon-spinner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 30px;
+	width: 30px;
+	margin: -15px 0 0 -15px;
+	-webkit-animation: rotation .6s infinite linear;
+	-moz-animation: rotation .6s infinite linear;
+	-o-animation: rotation .6s infinite linear;
+	animation: rotation .6s infinite linear;
+	border-left: 1px solid rgba(120,120,120,.15);
+	border-right: 1px solid rgba(120,120,120,.15);
+	border-bottom: 1px solid rgba(120,120,120,.15);
+	border-top: 1px solid rgba(120,120,120,.8);
+	border-radius: 100%;
+
+	@include transition-property(opacity);
+	@include transition-duration(0.2s);
+	@include opacity(1);
+
+	&.ng-hide-remove,
+	&.ng-hide-remove-active,
+	&.ng-hide-add-active {
+		@include opacity(0);
+	}
+}
+
+@-webkit-keyframes rotation {
+	from {-webkit-transform: rotate(0deg);}
+	to {-webkit-transform: rotate(359deg);}
+}
+
+@-moz-keyframes rotation {
+	from {-moz-transform: rotate(0deg);}
+	to {-moz-transform: rotate(359deg);}
+}
+
+@-o-keyframes rotation {
+	from {-o-transform: rotate(0deg);}
+	to {-o-transform: rotate(359deg);}
+}
+
+@keyframes rotation {
+	from {transform: rotate(0deg);}
+	to {transform: rotate(359deg);}
+}
+
+/*
+	module:　mod-icon-empty
+	- 代替表示画面
+-----------------------------------------------------------------*/
+.mod-icon-empty {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	@include transition-property(opacity);
+	@include transition-duration(0.2s);
+	@include opacity(1);
+
+	&.ng-hide-remove,
+	&.ng-hide-remove-active,
+	&.ng-hide-add-active {
+		@include opacity(0);
+	}
+
+	&.note {
+		background: url("../images/i_empty_note.png") no-repeat center 47%;
+		@include background-size(48px);
+	}
+
+	.empty-txt {
+		position: absolute;
+		top: 50%;
+		width: 100%;
+		margin: 16px 0 0 0;
+		color: #999;
+		text-align: center;
+		font-size: fz(14,12);
+	}
+}
