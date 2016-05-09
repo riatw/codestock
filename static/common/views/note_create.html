@@ -46,8 +46,9 @@
 						<label for="exampleInputPassword1">JavaScript</label>
 						<div ui-ace="form.ace_setting_js" ng-model="form.js"></div>
 					</div>
-					<div class="mod-box-scroll" ng-include="'common/views/code_preview.html'">
-
+					<div class="mod-box-scroll">
+						<label for="exampleInputPassword1">Preview</label>
+						<div ng-include="'common/views/code_preview.html'" style="height: 100%;"></div>
 					</div>
 				</div>
 			</div>

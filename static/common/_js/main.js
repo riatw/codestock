@@ -167,6 +167,7 @@ angular.module('mynote').controller("addNoteModalController", function ($scope, 
 				mode:'html',
 				theme:'monokai',
 				useWrapMode: true,
+				useSoftTabs: false,
 				onLoad: function(_editor) {
 					_editor.commands.addCommand({
 						name: "savefile",
@@ -182,6 +183,7 @@ angular.module('mynote').controller("addNoteModalController", function ($scope, 
 			},
 			ace_setting_css: {
 				useWrapMode : true, mode:'scss',theme:'monokai',
+				useSoftTabs: false,
 				onLoad: function(_editor) {
 					_editor.commands.addCommand({
 						name: "savefile",
@@ -197,6 +199,7 @@ angular.module('mynote').controller("addNoteModalController", function ($scope, 
 			},
 			ace_setting_js: {
 				useWrapMode : true, mode:'javascript',theme:'monokai',
+				useSoftTabs: false,
 				onLoad: function(_editor) {
 					_editor.commands.addCommand({
 						name: "savefile",
@@ -287,7 +290,21 @@ angular.module('mynote').controller("addNoteModalController", function ($scope, 
 		}
 
 		$scope.preview = function() {
-			$(".m-box-editnote [name='preview']").contents().find("html").html($(".m-box-editnote [name='template']").val());
+			sass.compile( $scope.form.css, function callback(result) {
+				$scope.$apply(function() {
+					$scope.form.css = result.text;
+				});
+
+				setTimeout(function() {
+					$(".editnote-code iframe[name='preview']").contents().find("[data-preview-html]").html( $scope.form.html );
+					$(".editnote-code iframe[name='preview']").contents().find("[data-preview-css]").html( $scope.form.css );
+
+					var ifrm = $(".editnote-code iframe[name='preview']").get(0).contentWindow;
+
+					// // 外部サイトにメッセージを投げる
+					ifrm.postMessage($scope.form.js, '*');
+				}, 1000);
+			});
 		};
 	}
 });
