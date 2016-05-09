@@ -157,8 +157,9 @@ angular.module('mynote').controller("addNoteModalController", function ($scope, 
 			html: '',
 			css: '',
 			js: '',
+			basename: '',
 			tags: [],
-			status: 'Draft',
+			status: 'Publish',
 			format: '',
 			preview: '',
 			preview_height: '',
@@ -228,6 +229,7 @@ angular.module('mynote').controller("addNoteModalController", function ($scope, 
 				$scope.form.js = json.excerpt;
 				$scope.form.tags = json.tags.join(",");
 				$scope.form.status = json.status;
+				$scope.form.basename = json.basename;
 				$scope.noteIsLoaded = 1;
 			});
 		}
@@ -247,6 +249,7 @@ angular.module('mynote').controller("addNoteModalController", function ($scope, 
 			object.tags =  $scope.form.tags.split(",");
 			object.status = $scope.form.status;
 			object.format = $scope.form.format;
+			object.basename = $scope.form.basename;
 
 			if ( items ) {
 				object.id = items.id;
