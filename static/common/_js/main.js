@@ -15,8 +15,6 @@ require('brace/mode/javascript');
 require('brace/theme/monokai');
 require('angular-ui-ace');
 require('angular-hotkeys');
-require('./setting.js');
-var SETTING = require('./setting.js')();
 
 var sass = new Sass('common/lib/sassjs/sass.worker.js');
 
@@ -346,6 +344,9 @@ angular.module('mynote').controller("addNoteStarController", function ($scope, d
 	}
 
 	$scope.$on('BCRefreshNoteDetail', function() {
+		if ( stateObject.currentNoteId == null ) {
+			return;
+		}
 		$scope.checkStar();
 	});
 });
@@ -499,6 +500,11 @@ angular.module('mynote').controller("noteDetailController", function($scope,stat
 	}
 
 	$scope.$on('BCRefreshNoteDetail', function() {
+		if ( stateObject.currentNoteId == null ) {
+			$scope.isNoteDetailLoaded = 0;
+			return;
+		}
+
 		$scope.currentNoteId = stateObject.currentNoteId;
 		$scope.detailBody = "";
 		$scope.isNoteDetailLoaded = 0;

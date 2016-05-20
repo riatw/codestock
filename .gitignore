@@ -1,2 +1,3 @@
 node_modules
 git-hook-deploy.php
+static/common/js/setting.js

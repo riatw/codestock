@@ -1,0 +1,4 @@
+// app setting
+var SETTING = {};
+SETTING.CMSURL = "https://hoge.com/mt/mt-data-api.fcgi/v3";
+SETTING.BLOGID = 1;

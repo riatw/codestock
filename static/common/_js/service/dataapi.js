@@ -1,7 +1,6 @@
 require('angular');
 var $ = require('jquery');
 var jQuery = require('jquery');
-var SETTING = require('../setting.js')();
 
 module.exports = angular.module('mynote').service('dataAPI', function(stateObject, $http, $location,Upload) {
 		var service = {
@@ -46,6 +45,7 @@ module.exports = angular.module('mynote').service('dataAPI', function(stateObjec
 					localStorage.setItem("sessionId", "");
 
 					stateObject.currentUser = null;
+					stateObject.currentNoteId = null;
 
 					callback(json);
 				});
